@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Rangoli Art Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <aside class="tools-board">
+      <h2>Rangoli Art Tools</h2>
+
+      <!-- Drawing Tools -->
+      <div class="tools-section">
+        <label>Tools</label>
+        <div class="tools">
+          <button class="tool" id="pen" title="Free Draw Pen">Pen</button>
+          <button class="tool" id="brush" title="Brush Tool">Brush</button>
+          <button class="tool" id="eraser" title="Eraser">Eraser</button>
+          <button class="tool" id="circle" title="Circle Shape">Circle</button>
+          <button class="tool" id="star" title="Star Shape">Star</button>
+          <button class="tool" id="flower" title="Flower Shape">Flower</button>
+          <button class="tool" id="rectangle" title="Rectangle Shape">Rectangle</button>
+          <button class="tool" id="ellipse" title="Ellipse Shape">Ellipse</button>
+          <button class="tool" id="hexagon" title="Hexagon Shape">Hexagon</button>
+          <button class="tool" id="triangle" title="Triangle Shape">Triangle</button>
+        </div>
+      </div>
+
+      <!-- Symmetry Control -->
+      <div class="tools-section">
+        <label>Symmetry Points</label>
+        <input type="range" id="symmetry-slider" min="1" max="12" step="1" value="4">
+        <span id="symmetry-value">4</span>
+      </div>
+
+      <!-- Color Picker -->
+      <div class="tools-section">
+        <label>Colors</label>
+        <div class="colors">
+          <button class="color-option" style="background-color: #FF5733;"></button>
+          <button class="color-option selected" style="background-color: #FFC300;"></button>
+          <button class="color-option" style="background-color: #DAF7A6;"></button>
+          <button class="color-option" style="background-color: #C70039;"></button>
+          <input type="color" id="color-picker" value="#FFC300">
+        </div>
+      </div>
+
+      <!-- Opacity Control -->
+      <div class="tools-section">
+        <label>Opacity</label>
+        <input type="range" id="opacity-slider" min="0.1" max="1" step="0.1" value="1">
+      </div>
+
+      <!-- Buttons -->
+      <div class="tools-section buttons">
+        <button class="action-btn" id="clear-canvas">Clear Canvas</button>
+        <button class="action-btn" id="undo">Undo</button>
+        <button class="action-btn" id="redo">Redo</button>
+        <button class="action-btn" id="save-img">Save Rangoli</button>
+      </div>
+    </aside>
+
+    <!-- Canvas -->
+    <main class="drawing-board">
+      <canvas width="900" height="700"></canvas>
+    </main>
+  </div>
+</body>
+</html>
