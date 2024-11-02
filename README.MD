@@ -2,7 +2,7 @@
 
 An interactive web application that allows users to create beautiful Rangoli patterns with ease. This simulator provides a set of tools to draw symmetrical designs, select colors, adjust symmetry levels, change opacity, undo/redo actions, and even import images to enhance creativity.
 
-<!-- Add an actual image link if available -->
+https://interactive-rangoli-designer.netlify.app/
 
 
 ## Features

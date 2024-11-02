@@ -14,6 +14,7 @@ body {
   min-height: 100vh;
   background-color: #f0f2f5;
   color: #333;
+  padding: 15px;
 }
 
 .container {
@@ -41,7 +42,7 @@ body {
 
 h2 {
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
   margin-bottom: 1rem;
   color: #444;
 }
@@ -56,6 +57,7 @@ label {
   font-weight: 500;
   margin-bottom: 8px;
   color: #666;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .tools {
@@ -67,7 +69,7 @@ label {
 .tool {
   flex: 1 1 calc(33% - 10px);
   padding: 10px;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
   font-weight: 500;
   text-align: center;
   color: #fff;
@@ -88,12 +90,13 @@ label {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .color-option,
 #color-picker {
-  width: 32px;
-  height: 32px;
+  width: clamp(24px, 4vw, 32px);
+  height: clamp(24px, 4vw, 32px);
   border-radius: 6px;
   cursor: pointer;
   border: 2px solid transparent;
@@ -110,6 +113,7 @@ input[type="range"] {
   width: 100%;
   margin-top: 8px;
   -webkit-appearance: none;
+  appearance: none;
   background: #e0e0e0;
   height: 6px;
   border-radius: 5px;
@@ -117,6 +121,7 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
   height: 16px;
   width: 16px;
   border-radius: 50%;
@@ -134,8 +139,8 @@ input[type="range"]::-moz-range-thumb {
 
 /* Buttons */
 .action-btn {
-  padding: 10px;
-  font-size: 1rem;
+  padding: clamp(8px, 2vw, 10px);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   color: #fff;
   background-color: #28a745;
   border: none;
@@ -143,6 +148,7 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 10px;
+  width: 100%;
 }
 
 .action-btn:hover {
@@ -157,7 +163,7 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
   background-color: #ffffff;
   border-radius: 12px;
-  padding: 20px;
+  padding: clamp(10px, 3vw, 20px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -168,18 +174,51 @@ canvas {
   border: 2px solid #e0e0e0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .container {
     flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .drawing-board {
-    width: 100%;
+    align-items: stretch;
+    padding: 15px;
   }
 
   .tools-board {
-    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .drawing-board {
+    min-height: 60vh;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .tools {
+    gap: 8px;
+  }
+
+  .tool {
+    flex: 1 1 calc(50% - 8px);
+  }
+}
+
+@media (max-width: 480px) {
+  .tool {
+    flex: 1 1 100%;
+  }
+
+  .colors {
+    justify-content: center;
+  }
+
+  .drawing-board {
+    min-height: 50vh;
   }
 }
