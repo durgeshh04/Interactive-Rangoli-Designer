@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* Basic Styling */
@@ -78,7 +78,8 @@ label {
   transition: background 0.3s ease;
 }
 
-.tool.active, .tool:hover {
+.tool.active,
+.tool:hover {
   background-color: #0056b3;
 }
 
@@ -89,7 +90,8 @@ label {
   align-items: center;
 }
 
-.color-option, #color-picker {
+.color-option,
+#color-picker {
   width: 32px;
   height: 32px;
   border-radius: 6px;
@@ -98,7 +100,8 @@ label {
   transition: border-color 0.3s ease;
 }
 
-.color-option.selected, .color-option:hover {
+.color-option.selected,
+.color-option:hover {
   border-color: #007bff;
 }
 
