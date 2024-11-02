@@ -1,4 +1,4 @@
-# Rangoli Art Simulator
+# Interactive Rangoli Designer
 
 An interactive web application that allows users to create beautiful Rangoli patterns with ease. This simulator provides a set of tools to draw symmetrical designs, select colors, adjust symmetry levels, change opacity, undo/redo actions, and even import images to enhance creativity.
 
@@ -31,7 +31,7 @@ git clone https://github.com/durgeshh04/Interactive-Rangoli-Designer.git
 
 2. Navigate to the project directory:
 
-cd rangoli-art-simulator
+cd Interactive-Rangoli-Designer
 
 
 3. Open the index.html file in your web browser to start the simulator:
@@ -59,7 +59,7 @@ No additional setup is needed! The simulator is built using pure HTML, CSS, and 
 
 ## File Structure
 
-rangoli-art-simulator/
+Interactive-Rangoli-Designer/
 ├── index.html        # Main HTML file for the application
 ├── style.css         # CSS file for styling the application
 ├── script.js         # JavaScript file for functionality
