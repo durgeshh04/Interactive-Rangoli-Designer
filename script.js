@@ -8,7 +8,8 @@ const canvas = document.querySelector("canvas"),
       clearCanvasBtn = document.getElementById("clear-canvas"),
       undoBtn = document.getElementById("undo"),
       redoBtn = document.getElementById("redo"),
-      saveImgBtn = document.getElementById("save-img");
+      saveImgBtn = document.getElementById("save-img"),
+      imageUpload = document.getElementById("image-upload");
 
 let isDrawing = false,
     symmetryPoints = symmetrySlider.value,
@@ -19,6 +20,7 @@ let isDrawing = false,
     undoStack = [],
     redoStack = [];
 
+// Initialize canvas with a white background and save the initial state
 window.addEventListener("load", () => {
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -26,6 +28,22 @@ window.addEventListener("load", () => {
   saveState();
 });
 
+// Load uploaded image onto canvas
+imageUpload.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(img.src); // Free memory
+      saveState();
+    };
+  }
+});
+
+// Symmetry and color control
 symmetrySlider.addEventListener("input", () => {
   symmetryPoints = symmetrySlider.value;
   document.getElementById("symmetry-value").textContent = symmetryPoints;
@@ -34,6 +52,7 @@ symmetrySlider.addEventListener("input", () => {
 colorPicker.addEventListener("input", () => selectedColor = colorPicker.value);
 opacitySlider.addEventListener("input", () => opacity = opacitySlider.value);
 
+// Tool selection and drawing functions
 toolBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelector(".tool.active")?.classList.remove("active");
@@ -51,11 +70,13 @@ colorOptions.forEach(btn => {
   });
 });
 
+// Save the canvas state for undo functionality
 const saveState = () => {
   undoStack.push(canvas.toDataURL());
   redoStack = [];
 };
 
+// Start drawing on the canvas
 const startDraw = (e) => {
   isDrawing = true;
   ctx.beginPath();
@@ -66,6 +87,7 @@ const startDraw = (e) => {
   }
 };
 
+// Drawing function to handle drawing on the canvas
 const draw = (e) => {
   if (!isDrawing) return;
   ctx.lineWidth = brushSize;
@@ -81,6 +103,7 @@ const draw = (e) => {
   }
 };
 
+// Draw shapes with symmetry around the canvas
 const drawSymmetricShapes = (e) => {
   const centerX = canvas.width / 2,
         centerY = canvas.height / 2,
@@ -121,6 +144,7 @@ const drawSymmetricShapes = (e) => {
   }
 };
 
+// Shape drawing functions
 const drawCircle = (e) => {
   ctx.beginPath();
   ctx.arc(e.offsetX, e.offsetY, 20, 0, 2 * Math.PI);
@@ -150,8 +174,7 @@ const drawStar = (e) => {
 };
 
 const drawFlower = (e) => {
-  const petals = 6;
-  const radius = 15;
+  const petals = 6, radius = 15;
   ctx.beginPath();
   for (let i = 0; i < petals; i++) {
     const theta = (i * Math.PI) / (petals / 2);
@@ -202,16 +225,19 @@ const drawTriangle = (e) => {
   ctx.stroke();
 };
 
+// Stop drawing and save state
 const stopDraw = () => {
   isDrawing = false;
   ctx.beginPath();
   saveState();
 };
 
+// Add event listeners for drawing actions
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mouseup", stopDraw);
 
+// Clear canvas
 clearCanvasBtn.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#fff";
@@ -219,10 +245,11 @@ clearCanvasBtn.addEventListener("click", () => {
   saveState();
 });
 
+// Undo and redo functionality
 undoBtn.addEventListener("click", () => {
   if (undoStack.length > 1) {
-    redoStack.push(undoStack.pop());    
-    let imgData = new Image();
+    redoStack.push(undoStack.pop());
+    const imgData = new Image();
     imgData.src = undoStack[undoStack.length - 1];
     imgData.onload = () => ctx.drawImage(imgData, 0, 0);
   }
@@ -240,9 +267,10 @@ redoBtn.addEventListener("click", () => {
   }
 });
 
+// Save canvas as an image
 saveImgBtn.addEventListener("click", () => {
   const link = document.createElement("a");
-  link.download = `rangoli_${Date.now()}.png`;
-  link.href = canvas.toDataURL();
+  link.href = canvas.toDataURL("image/png");
+  link.download = "rangoli.png";
   link.click();
 });
